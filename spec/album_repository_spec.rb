@@ -11,7 +11,7 @@ RSpec.describe AlbumRepository do
     reset_albums_table
   end
 
-  it '' do
+  it 'returns the array of artists as objects' do
     repo = AlbumRepository.new
 
     albums = repo.all
