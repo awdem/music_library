@@ -124,10 +124,46 @@ Using comments, define the method signatures (arguments and return value) and wh
 
 ```ruby
 # Repository class
-# (in lib/student_repository.rb)
-class StudentRepository
+class AlbumRepository
+
+  # Selecting all records
+  # No arguments
+  def all
+    # Executes the SQL query:
+    # SELECT id, title, release_year, artist_id FROM albums;
+
+    # Returns an array of Student objects.
+  end
+
+  def find(id)
+    # Executes the SQL query:
+    # SELECT id, title, release_year, artist_id FROM students WHERE id = $1;
+
+    # Returns a single Student object.
+  end
+
+  # def create(album)
+    # Executes the SQL query:
+    # INSERT INTO albums 
+    # (title, release_year, artist_id)
+    # VALUES (title, release_year, artist_id)
+  # end
+
+  # def update(album)
+    # Executes the SQL query:
+    # INSERT INTO albums 
+    # (title, release_year, artist_id)
+    # VALUES (title, release_year, artist_id)  
+  # end
+
+  # def delete(album)
+  # end
+
+
 end
 ```
+
+
 ```ruby
 # EXAMPLE
 # Table name: students
@@ -175,35 +211,38 @@ Write Ruby code that defines the expected behaviour of the Repository class, fol
 These examples will later be encoded as RSpec tests.
 
 ```ruby
-# EXAMPLES
-
 # 1
 # Get all students
 
-repo = StudentRepository.new
+repo = AlbumRepository.new
 
-students = repo.all
+albums = repo.all
 
-students.length # =>  2
+albums.length # =>  2
 
-students[0].id # =>  1
-students[0].name # =>  'David'
-students[0].cohort_name # =>  'April 2022'
+albums[0].id # =>  1
+albums[0].title # =>  'The Soft Bulletin'
+albums[0].release_year # =>  1999
+albums[0].artist_id # => 1
 
-students[1].id # =>  2
-students[1].name # =>  'Anna'
-students[1].cohort_name # =>  'May 2022'
+albums[1].id # =>  2
+albums[1].title # =>  'Mezzanine'
+albums[1].release_year # =>  1998
+albums[1].artist_id # => 2
+
+
 
 # 2
 # Get a single student
 
 repo = StudentRepository.new
 
-student = repo.find(1)
+album = repo.find(1)
 
-student.id # =>  1
-student.name # =>  'David'
-student.cohort_name # =>  'April 2022'
+albums.id # =>  1
+albums.title # =>  'The Soft Bulletin'
+albums.release_year # =>  1999
+albums.artist_id # => 1
 
 # Add more examples for each method
 ```
