@@ -40,5 +40,6 @@ RSpec.describe AlbumRepository do
     expect(album.artist_id).to eq '1'   
   end
 
+  # fail state for finding a non-existent record?
   
 end
