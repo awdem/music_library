@@ -1,12 +1,13 @@
 require_relative 'lib/database_connection'
-
+require_relative 'lib/album_repository'
+require_relative 'lib/album'
 # We need to give the database name to the method `connect`.
 DatabaseConnection.connect('music_library')
 
 # Perform a SQL query on the database and get the result set.
-id = 1
-sql = "SELECT id, title, release_year, artist_id FROM albums WHERE id = #{id} "
-result = DatabaseConnection.exec_params(sql, [])
-
+repo = AlbumRepository.new
+albums = repo.all
 # Print out each record from the result set .
-p result.entries
+albums.each do |record|
+  p record.title
+end

@@ -23,6 +23,11 @@ class AlbumRepository
     albums
   end
 
+  # Executes the SQL query:
+    # SELECT id, title, release_year, artist_id FROM albums WHERE id = $1;
+
+    # Returns a single album object.
+
   def find(id)
     sql = "SELECT id, title, release_year, artist_id FROM albums WHERE id = #{id} "
     result = DatabaseConnection.exec_params(sql, [])
@@ -36,28 +41,6 @@ class AlbumRepository
     end
 
     album
-    # Executes the SQL query:
-    # SELECT id, title, release_year, artist_id FROM albums WHERE id = $1;
-
-    # Returns a single album object.
   end
-
-  # def create(album)
-    # Executes the SQL query:
-    # INSERT INTO albums 
-    # (title, release_year, artist_id)
-    # VALUES (title, release_year, artist_id)
-  # end
-
-  # def update(album)
-    # Executes the SQL query:
-    # INSERT INTO albums 
-    # (title, release_year, artist_id)
-    # VALUES (title, release_year, artist_id)  
-  # end
-
-  # def delete(album)
-  # end
-
 
 end
