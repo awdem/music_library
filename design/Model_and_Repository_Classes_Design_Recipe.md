@@ -89,7 +89,6 @@ Define the attributes of your Model class. You can usually map the table columns
 # Model
 class Album
 
-
   attr_accessor :id, :title, :release_year, :artist_id
 end
 ```
