@@ -42,4 +42,19 @@ RSpec.describe AlbumRepository do
 
   # fail state for finding a non-existent record?
   
+  it "creates a new artist and adds it to the artists table" do
+    repository = AlbumRepository.new
+
+    album = Album.new
+    album.title = 'Trompe le Monde'
+    album.release_year = 1991
+    album.artist_id = 1
+    
+    repository.create(album)
+    
+    latest_album = repository.all.last
+    expect(latest_album.title).to eq 'Trompe le Monde'    
+    expect(latest_album.release_year).to eq '1991'   
+    expect(latest_album.artist_id).to eq '1' 
+  end
 end
