@@ -29,8 +29,8 @@ class AlbumRepository
     # Returns a single album object.
 
   def find(id)
-    sql = "SELECT id, title, release_year, artist_id FROM albums WHERE id = #{id} "
-    result = DatabaseConnection.exec_params(sql, [])
+    sql = "SELECT id, title, release_year, artist_id FROM albums WHERE id = $1 "
+    result = DatabaseConnection.exec_params(sql, [id])
     album = Album.new
 
     result.each do |record|
@@ -41,6 +41,11 @@ class AlbumRepository
     end
 
     album
+  end
+
+  def create(artist)
+    # creates a new artist record
+    #returns nothing
   end
 
 end
