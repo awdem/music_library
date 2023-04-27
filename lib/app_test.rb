@@ -26,15 +26,18 @@ class Application
     # write output and ask for user input.
   def run
     @io.puts "Welcome to the music library manager!\n"
+    list_choices
+  end
+
+  private
+
+  def list_choices
     @io.puts "What would you like to do?"
     @io.puts "1 - List all albums"
     @io.puts "1 - List all artists"
     @io.p "Enter your choice: "
   end
 
-  private
-
-  
 end
 
 # Don't worry too much about this if statement. It is basically saying "only

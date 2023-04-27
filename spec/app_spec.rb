@@ -15,16 +15,16 @@ RSpec.describe Application do
       artist_repository_dbl = double :artist_repository
       app = Application.new('music_library_test', io_dbl, album_repository_dbl, artist_repository_dbl) 
       
-      expect(io_dbl).to receive(:puts)
-        .with("Welcome to the music library manager!\n").ordered   
-      expect(io_dbl).to receive(:puts)
-        .with("What would you like to do?").ordered   
-      expect(io_dbl).to receive(:puts)
-        .with("1 - List all albums").ordered   
-      expect(io_dbl).to receive(:puts)
-        .with("1 - List all artists").ordered   
-      expect(io_dbl).to receive(:p)
-        .with("Enter your choice: ").ordered   
+        expect(io_dbl).to receive(:puts)
+          .with("Welcome to the music library manager!\n").ordered   
+        expect(io_dbl).to receive(:puts)
+          .with("What would you like to do?").ordered   
+        expect(io_dbl).to receive(:puts)
+          .with("1 - List all albums").ordered   
+        expect(io_dbl).to receive(:puts)
+          .with("1 - List all artists").ordered   
+        expect(io_dbl).to receive(:p)
+          .with("Enter your choice: ").ordered   
     
       app.run
     end
