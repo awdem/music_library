@@ -1,6 +1,15 @@
 require 'app_test'
+def reset_albums_table
+  seed_sql = File.read('spec/seeds_albums.sql')
+  connection = PG.connect({ host: '127.0.0.1', dbname: 'music_library_test' })
+  connection.exec(seed_sql)
+end
+
 
 RSpec.describe Application do
+  before(:each) do 
+    reset_albums_table
+  end
   xit "constructs" do
     io_dbl = double :Kernel
     album_repository_dbl = double :album_repository
@@ -23,9 +32,10 @@ RSpec.describe Application do
           .with("1 - List all albums").ordered   
         expect(io_dbl).to receive(:puts)
           .with("1 - List all artists").ordered   
-        expect(io_dbl).to receive(:p)
+        expect(io_dbl).to receive(:print)
           .with("Enter your choice: ").ordered   
-    
+        expect(io_dbl).to receive(:gets)
+          .and_return ('choice')    
       app.run
     end
 
@@ -33,23 +43,12 @@ RSpec.describe Application do
       it 'lists all albums' do
         io_dbl = double :Kernel
         album_repository_dbl = double :album_repository
+        album1 = double :album, title: 'The Soft Bulletin'
+        album2 = double :album, title: 'Mezzanine' 
         artist_repository_dbl = double :artist_repository
         app = Application.new('music_library_test', io_dbl, album_repository_dbl, artist_repository_dbl)
         
-        album_list = '
-        * 1 - Doolittle
-        * 2 - Surfer Rosa
-        * 3 - Waterloo
-        * 4 - Super Trouper
-        * 5 - Bossanova
-        * 6 - Lover
-        * 7 - Folklore
-        * 8 - I Put a Spell on You
-        * 9 - Baltimore
-        * 10 -	Here Comes the Sun
-        * 11 - Fodder on My Wings
-        * 12 -	Ring Ring
-        '
+        
         expect(io_dbl).to receive(:puts)
           .with("Welcome to the music library manager!").ordered   
         expect(io_dbl).to receive(:puts)
@@ -58,12 +57,17 @@ RSpec.describe Application do
           .with("1 - List all albums").ordered   
         expect(io_dbl).to receive(:puts)
           .with("1 - List all artists").ordered   
-        expect(io_dbl).to receive(:p)
+        expect(io_dbl).to receive(:print)
           .with("Enter your choice: ").ordered          
-        expect(@io_dbl).to receive(:gets)
-          .with('1')
-          .and_return(album_list).ordered
-
+        expect(io_dbl).to receive(:gets)
+          .and_return('1').ordered
+        expect(album_repository_dbl).to receive(:all)
+          .and_return([album1, album2]).ordered
+        expect(io_dbl).to receive(:puts)
+          .with("* 1 - The Soft Bulletin").ordered
+        expect(io_dbl).to receive(:puts)
+          .with("* 2 - Mezzanine").ordered
+        
         app.run
       end
     end

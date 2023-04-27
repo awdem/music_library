@@ -30,13 +30,11 @@ class Application
     choice = @io.gets.chomp
     case choice
     when '1'
-      @album_repository.all.each_with_index do |album, i|
-        @io.puts "* #{i+1} - #{album.title}"
-      end
+      #do something
     when '2'
-      # lists artists
+      # do something
     else
-      # does something
+      # do something
     end
     
   end
@@ -47,7 +45,7 @@ class Application
     @io.puts "\nWhat would you like to do?"
     @io.puts '1 - List all albums'
     @io.puts '1 - List all artists'
-    @io.print 'Enter your choice: '
+    @io.p 'Enter your choice: '
   end
 
 end
@@ -58,7 +56,7 @@ end
 # If you want to learn more about __FILE__ and $0, see here: https://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Variables_and_Constants#Pre-defined_Variables
 if __FILE__ == $0
   app = Application.new(
-    'music_library_test',
+    'music_library',
     Kernel,
     AlbumRepository.new,
     'ArtistRepository.new'
@@ -66,3 +64,6 @@ if __FILE__ == $0
   app.run
 end
 
+album_repository = AlbumRepository.new
+artist_repository = 'artist_repository'
+app = Application.new('music_library', Kernel, album_repository, artist_repository)

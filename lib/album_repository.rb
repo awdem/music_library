@@ -1,3 +1,4 @@
+require_relative 'album'
 class AlbumRepository
 
   # Selecting all records
