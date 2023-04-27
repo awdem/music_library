@@ -1,5 +1,5 @@
-require_relative 'lib/database_connection'
-require_relative 'lib/album_repository'
+require_relative 'database_connection'
+require_relative 'album_repository'
 # require_relative './lib/artist_repository'
 
 class Application
