@@ -17,7 +17,6 @@ class Application
     @artist_repository = artist_repository
   end
 
-  def run
     # "Runs" the terminal application
     # so it can ask the user to enter some input
     # and then decide to run the appropriate action
@@ -25,7 +24,17 @@ class Application
 
     # Use `@io.puts` or `@io.gets` to
     # write output and ask for user input.
+  def run
+    @io.puts "Welcome to the music library manager!\n"
+    @io.puts "What would you like to do?"
+    @io.puts "1 - List all albums"
+    @io.puts "1 - List all artists"
+    @io.p "Enter your choice: "
   end
+
+  private
+
+  
 end
 
 # Don't worry too much about this if statement. It is basically saying "only
