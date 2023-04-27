@@ -25,17 +25,18 @@ class Application
     # Use `@io.puts` or `@io.gets` to
     # write output and ask for user input.
   def run
-    @io.puts "Welcome to the music library manager!\n"
+    @io.puts 'Welcome to the music library manager!'
     list_choices
+    
   end
 
   private
 
   def list_choices
-    @io.puts "What would you like to do?"
-    @io.puts "1 - List all albums"
-    @io.puts "1 - List all artists"
-    @io.p "Enter your choice: "
+    @io.puts "\nWhat would you like to do?"
+    @io.puts '1 - List all albums'
+    @io.puts '1 - List all artists'
+    @io.p 'Enter your choice: '
   end
 
 end
@@ -49,7 +50,11 @@ if __FILE__ == $0
     'music_library',
     Kernel,
     AlbumRepository.new,
-    ArtistRepository.new
+    'ArtistRepository.new'
   )
   app.run
 end
+
+# album_repository = AlbumRepository.new
+# artist_repository = 'artist_repository'
+# app = Application.new('music_library', Kernel, album_repository, artist_repository)
